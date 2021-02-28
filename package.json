@@ -20,7 +20,11 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-native-masked-loader": "^1.1.4",
+    "react-native-masked-view": "^0.2.0",
+    "react-native-scroll-lazy": "^1.0.1",
     "react-native-shared-element": "^0.7.0",
+    "react-native-svg": "^12.1.0",
     "react-native-web": "~0.13.12",
     "tslib": "^2.1.0"
   },

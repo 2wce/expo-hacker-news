@@ -6,21 +6,11 @@ import {
   StatusBar,
   ActivityIndicator,
 } from "react-native";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
-import { Card, Header } from "./components";
+import { AppOfTheDayCard, Card, Header } from "./components";
 import { Story } from "./utils";
-
-const FEED_QUERY = gql`
-  query GetFeed {
-    feed {
-      by
-      title
-      text
-      score
-    }
-  }
-`;
+import { FEED_QUERY } from "./graphql/queries";
 
 const Main = () => {
   const [stories, setStories] = useState<Story[] | undefined>(undefined);
@@ -53,24 +43,33 @@ const Main = () => {
           }}
         >
           {stories &&
-            stories.map((story, i) => (
-              <View key={i} style={{ marginBottom: 32 }}>
-                <Card
-                  smallTitle={story?.by}
-                  largeTitle={story?.title}
-                  footnoteText=""
-                  //source={}
-                  onPress={() => {}}
-                  //resizeMode="cover"
-                />
-              </View>
-            ))}
-          {/* <AppOfTheDayCard
-          iconSource={require("./assets/Colorfy.jpg")}
-          backgroundSource={require("./assets/ColorfyBG.jpg")}
-          onPress={() => {}}
-          buttonOnPress={() => {}}
-        /> */}
+            stories.map((story, i) => {
+              const result =
+                i % 2 === 0 ? (
+                  <View key={i} style={{ marginBottom: 32 }}>
+                    <Card
+                      smallTitle={story?.by}
+                      largeTitle={story?.title}
+                      footnoteText=""
+                      //source={}
+                      onPress={() => {}}
+                      //resizeMode="cover"
+                    />
+                  </View>
+                ) : (
+                  <AppOfTheDayCard
+                    key={i}
+                    largeTitle=""
+                    title={story.title}
+                    subtitle={`${story.by}`}
+                    onPress={() => {}}
+                    buttonOnPress={() => {}}
+                  />
+                );
+
+              //console.log({ result });
+              return result;
+            })}
         </ScrollView>
       </SafeAreaView>
     </Fragment>

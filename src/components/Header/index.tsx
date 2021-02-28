@@ -22,7 +22,7 @@ interface IProps {
   largeTitleFontWeight?: number | string;
 }
 
-const AppleHeader = (props: IProps) => {
+const Header = (props: IProps) => {
   const {
     onPress,
     dateTitle,
@@ -76,7 +76,7 @@ const AppleHeader = (props: IProps) => {
   );
 };
 
-AppleHeader.defaultProps = {
+Header.defaultProps = {
   dateTitleFontSize: 13,
   largeTitle: "For You",
   dateTitleFontWeight: "600",
@@ -89,4 +89,4 @@ AppleHeader.defaultProps = {
   dateTitle: moment().format("dddd, DD MMMM"),
 };
 
-export default AppleHeader;
+export default Header;

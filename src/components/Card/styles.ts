@@ -8,6 +8,7 @@ interface Style {
   topHeaderContainer: ViewStyle;
   smallTitleTextStyle: TextStyle;
   largeTitleTextStyle: TextStyle;
+  innerContainer: TextStyle;
 }
 
 export function _shadowStyle(shadowColor?: string) {
@@ -56,5 +57,10 @@ export default StyleSheet.create<Style>({
     fontSize: 12,
     color: "#fffdfe",
     fontFamily: "System",
+  },
+  innerContainer: {
+    left: 16,
+    bottom: 16,
+    position: "absolute",
   },
 });

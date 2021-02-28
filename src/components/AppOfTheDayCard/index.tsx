@@ -13,17 +13,18 @@ import RNBounceable from "@freakycoder/react-native-bounceable";
  * ? Local Imports
  */
 import styles, { _shadowStyle } from "./styles";
+import { Footer } from "..";
 
 interface IProps {
   title?: string;
   iconStyle?: any;
-  iconSource: any; // ? Not Optional
+  iconSource?: any; // ? Not Optional
   subtitle?: string;
   largeTitle?: string;
   buttonText?: string;
   titleTextStyle?: any;
   shadowColor?: string;
-  backgroundSource: any; // ? Not Optional
+  backgroundSource?: any; // ? Not Optional
   subtitleTextStyle?: any;
   buttonSubtitle?: string;
   largeTitleTextStyle?: any;
@@ -51,7 +52,7 @@ const AppOfTheDayCard: React.FC<IProps> = (props: IProps) => {
     buttonSubtitleTextStyle,
   } = props;
   return (
-    <View style={_shadowStyle(shadowColor)}>
+    <View style={[_shadowStyle(shadowColor), { marginBottom: 32 }]}>
       <RNBounceable
         bounceEffect={0.95}
         bounceFriction={4}
@@ -63,59 +64,16 @@ const AppOfTheDayCard: React.FC<IProps> = (props: IProps) => {
           borderRadius={8}
           resizeMode="cover"
           style={styles.container}
-          source={backgroundSource}
+          source={{
+            uri: "https://source.unsplash.com/collection/8309166",
+          }}
           {...props}
         >
           <View style={styles.innerContainer}>
             <Text style={[styles.largeTitleTextStyle, largeTitleTextStyle]}>
               {largeTitle}
             </Text>
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              colors={["#de9c7c", "#ef9f81", "#efa192"]}
-              style={styles.gradientStyle}
-              {...props}
-            >
-              <View style={styles.gradientInnerContainer}>
-                <Image
-                  style={[styles.iconStyle, iconStyle]}
-                  borderRadius={12}
-                  resizeMode="cover"
-                  source={iconSource}
-                />
-                <View style={styles.titleContainer}>
-                  <Text
-                    numberOfLines={2}
-                    style={[styles.titleTextStyle, titleTextStyle]}
-                  >
-                    {title}
-                  </Text>
-                  <Text
-                    numberOfLines={1}
-                    style={[styles.subtitleTextStyle, subtitleTextStyle]}
-                  >
-                    {subtitle}
-                  </Text>
-                </View>
-                <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                    style={styles.buttonInnerContainer}
-                    onPress={buttonOnPress}
-                  >
-                    <Text style={styles.buttonTextStyle}>{buttonText}</Text>
-                  </TouchableOpacity>
-                  <Text
-                    style={[
-                      styles.buttonSubtitleTextStyle,
-                      buttonSubtitleTextStyle,
-                    ]}
-                  >
-                    {buttonSubtitle}
-                  </Text>
-                </View>
-              </View>
-            </LinearGradient>
+            <Footer title={title} />
           </View>
         </ImageBackground>
       </RNBounceable>
@@ -128,8 +86,8 @@ AppOfTheDayCard.defaultProps = {
   title: "Colorfy: Coloring Art Games",
   subtitle: "Drawing & painting for  everyone",
   largeTitle: `APP` + "\n" + `OF THE` + "\n" + `DAY`,
-  buttonText: "GET",
-  buttonSubtitle: "In-App Purchases",
+  buttonText: "Save",
+  buttonSubtitle: "",
 };
 
 export default AppOfTheDayCard;

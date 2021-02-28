@@ -7,10 +7,11 @@ import RNBounceable from "@freakycoder/react-native-bounceable";
  * ? Local Imports
  */
 import styles, { _shadowStyle } from "./styles";
+import { Footer } from "..";
 
 interface IProps {
   style?: any;
-  source?: any; // ? Not Optional
+  score?: any; // ? Not Optional
   smallTitle?: string;
   largeTitle?: string;
   shadowColor?: string;
@@ -22,9 +23,9 @@ interface IProps {
   onPress: () => void;
 }
 
-const AppleCard: React.FC<IProps> = (props: IProps) => {
+const Card: React.FC<IProps> = (props: IProps) => {
   const {
-    source,
+    score,
     style,
     shadowColor,
     footnoteText,
@@ -63,10 +64,8 @@ const AppleCard: React.FC<IProps> = (props: IProps) => {
               {largeTitle}
             </Text>
           </View>
-          <View style={styles.bottomContainer}>
-            <Text style={[styles.footnoteTextStyle, footnoteTextStyle]}>
-              {footnoteText}
-            </Text>
+          <View style={styles.innerContainer}>
+            <Footer title={largeTitle} />
           </View>
         </ImageBackground>
       </RNBounceable>
@@ -74,7 +73,7 @@ const AppleCard: React.FC<IProps> = (props: IProps) => {
   );
 };
 
-AppleCard.defaultProps = {
+Card.defaultProps = {
   shadowColor: "#000",
   smallTitle: "NEW GAME",
   largeTitle: "The Brilliance of Brawl Stars",
@@ -82,4 +81,4 @@ AppleCard.defaultProps = {
     "The next game from the markers of Clash Royale is here. Tap to learn more.",
 };
 
-export default AppleCard;
+export default Card;
